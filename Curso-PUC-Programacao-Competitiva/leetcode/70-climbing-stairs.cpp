@@ -1,30 +1,22 @@
-// 20 minutos cromometrado
-#include <iostream>
+class Solution {
+public:
+    int climbStairs(int n) {
+        int a = 1;
+        int b = 1;
+        int prox;
 
-using namespace std;
+        if(n == 1){
+            return 1;
+            
+        } else{
+            for(int i = 2; i <= n; i++){
 
-// Maratona de Programacao da SBC - ICPC - 2024
-// Problema A, Atencao a Reuniao
-
-int main()
-{
-    int N, K;
-    int intervalo = 0, resultado = 0;
-
-    cin >> N;
-    cin >> K;
-
-    // intervalo de N termos eh N-1, subtrair dos diretores K
-
-    if(1 <= N && N <= 100){
-        if(1 <= K && K <= 1000 && K >= N){
-            intervalo = N-1;
-            K -= intervalo;
-            resultado = K/N;
+            prox = a + b;
+            a = b;
+            b = prox;
+            }
         }
+        
+        return prox;
     }
-
-    cout << resultado << endl;
-
-    return 0;
-}
+};
