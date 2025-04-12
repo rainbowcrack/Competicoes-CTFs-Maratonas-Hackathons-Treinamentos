@@ -20,7 +20,7 @@ int main(){
     soma = area1 + area2;
     
     // define a raiz
-    raiz = (int) sqrt(soma);
+    raiz = sqrt(soma);
     
     cout << ((raiz * raiz == soma)? "SIM" : "NAO") << endl;
     
