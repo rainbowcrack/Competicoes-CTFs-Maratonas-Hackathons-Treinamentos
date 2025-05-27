@@ -9,11 +9,8 @@ using namespace std;
 ```c
 cin/cout: ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
 ```
-
 ## Arrays (sequenciais e dinâmicos):
-
 ```c
-int main() {
     vector<int> v;
 
     // Inserção de elementos no final
@@ -65,9 +62,13 @@ int main() {
     vector<int> b = {10, 20, 30, 40};
     int pos = lower_bound(b.begin(), b.end(), 25) - b.begin();
     cout << "Lower bound para 25: posição " << pos << endl;
-
-## 
-
-    return 0;
-}
 ```
+## Stack (Pilha)
+
+## Queue (Fila)
+
+## Set
+
+## Map e HashMap
+
+## Árvore Binária (BTS) e Busca Binária
