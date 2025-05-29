@@ -204,4 +204,3 @@ stack<int> s;
     // Output: (1,apple,2.5) (2,apricot,3.1) (2,banana,1.99)
     return 0;
 }
-
