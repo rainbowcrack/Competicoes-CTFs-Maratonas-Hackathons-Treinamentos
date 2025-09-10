@@ -323,8 +323,6 @@ def dijkstra(origem):
 print(dijkstra('A'))
 ```
 **Algoritmo de Kruskal com Union-Find, Árvores Geradoras Mínimas**
-<img width="700" height="513" alt="image" src="https://github.com/user-attachments/assets/b16d5dea-eaa4-4e6f-aa5f-ac5dc2e8d929" />
-
 * Use Kruskal se o grafo vem com lista de arestas.
 * Use Prim se o grafo vem com lista de adjacência.
 
