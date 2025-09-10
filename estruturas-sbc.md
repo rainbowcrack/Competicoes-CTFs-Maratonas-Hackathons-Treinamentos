@@ -92,38 +92,6 @@ stack<int> s;
     // Remover elemento da frente (dequeue)
         q.pop();
 ```
-## Queue de Prioridade (Fila de Prioridade)
-```c
-priority_queue<int> pq;
-
-    // Insercao - O(1)
-    pq.push(5);
-    pq.push(10);
-    pq.push(1);
-
-    // Acesso ao maior elemento (topo) - O(1)
-    cout << "Maior: " << pq.top() << "\n"; // 10
-
-    // Remocao do maior
-    pq.pop();
-
-    cout << "Proximo maior: " << pq.top() << "\n"; // 5
-```
-**Menor** no topo:
-```c
-priority_queue<int, vector<int>, greater<int>> pq;
-```
-Usando **pair**:
-```c
-// Min-heap: menor prioridade no topo
-priority_queue<pair<int, string>, vector<pair<int, string>>, greater<>> fila;
-    fila.push({2, "Carlos"});
-    fila.push({1, "Ana"});
-    fila.push({3, "Bruno"});
-
-// Max-heap: maior prioridade no topo
-priority_queue<pair<int, string>> fila;
-```
 ## Set (sem repetição)
 ```c
     set<int> s;
@@ -233,6 +201,38 @@ priority_queue<pair<int, string>> fila;
     for(const auto& t : vt) {
         cout << "(" << get<0>(t) << "," << get<1>(t) << "," << get<2>(t) << ")" << endl;
     }
+```
+## Queue de Prioridade (Fila de Prioridade)
+```c
+priority_queue<int> pq;
+
+    // Insercao - O(1)
+    pq.push(5);
+    pq.push(10);
+    pq.push(1);
+
+    // Acesso ao maior elemento (topo) - O(1)
+    cout << "Maior: " << pq.top() << "\n"; // 10
+
+    // Remocao do maior
+    pq.pop();
+
+    cout << "Proximo maior: " << pq.top() << "\n"; // 5
+```
+**Menor** no topo:
+```c
+priority_queue<int, vector<int>, greater<int>> pq;
+```
+Usando **pair**:
+```c
+// Min-heap: menor prioridade no topo
+priority_queue<pair<int, string>, vector<pair<int, string>>, greater<>> fila;
+    fila.push({2, "Carlos"});
+    fila.push({1, "Ana"});
+    fila.push({3, "Bruno"});
+
+// Max-heap: maior prioridade no topo
+priority_queue<pair<int, string>> fila;
 ```
 ## Grafos (python)
 **Lista de Adjacência**:
