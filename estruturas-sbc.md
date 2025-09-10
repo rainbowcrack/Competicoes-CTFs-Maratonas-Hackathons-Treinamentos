@@ -60,6 +60,7 @@ setvbuf(stdout, NULL, _IOFBF, 1<<20); // Aumenta buffer do stdout
     vector<int> b = {10, 20, 30, 40};
     int pos = lower_bound(b.begin(), b.end(), 25) - b.begin();
     cout << "Lower bound para 25: posição " << pos << endl;
+    // como se fosse o "piso"/limite do valor que quero achar
 ```
 ## Stack (Pilha)
 ```c
@@ -74,7 +75,6 @@ stack<int> s;
         cout << "Topo: " << s.top() << endl; // 20
     }
 ```
-
 ## Queue (Fila)
 ```c
    queue<int> q;
@@ -93,8 +93,31 @@ stack<int> s;
         q.pop();
 ```
 ## Queue de Prioridade (Fila de Prioridade)
+```c
+priority_queue<int> pq;
 
+    // Insercao - O(1)
+    pq.push(5);
+    pq.push(10);
+    pq.push(1);
 
+    // Acesso ao maior elemento (topo) - O(1)
+    cout << "Maior: " << pq.top() << "\n"; // 10
+
+    // Remocao do maior
+    pq.pop();
+
+    cout << "Proximo maior: " << pq.top() << "\n"; // 5
+```
+**Menor** no topo:
+```c
+priority_queue<int, vector<int>, greater<int>> pq;
+```
+Usando **pair**:
+```c
+// Min-heap: menor prioridade no topo (use greater)
+priority_queue<pair<int, string>, vector<pair<int, string>>, greater<>> fila;
+```
 ## Set (sem repetição)
 ```c
     set<int> s;
@@ -138,7 +161,6 @@ stack<int> s;
     if (m.count("banana")) { 
         cout << "Banana existe no map, preco: " << m["banana"] << endl;
     }
-
 ```
 
 ## Pair 
