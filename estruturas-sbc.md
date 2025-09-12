@@ -532,3 +532,33 @@ Lógica: **int xor_total = grundy[pilha1] ^ grundy[pilha2] ^ grundy[pilha3];**
 - Em problemas de DP, busque subproblemas e recursões.
 - Em análise combinatória, defina se ordem importa e se há repetição.
 - Use séries para estimar crescimento (ex: log(n), n log n, n²).
+
+## Sort em arrays dinâmicos usando funções customizadas:
+```cpp
+    bool comp (int a, int b) {
+        // comp deve retornar true caso a deva vir antes de b
+        return a < b;
+    }
+    vector<int> v;
+    sort(v.begin(), v.end(), comp);
+
+    //usando lambda function
+    sort(v.begin(), v.end(), [](auto &a, auto &b){
+        return a < b;
+    });
+```
+## Sort em priority queue
+```cpp
+    // Maior primeiro
+    priority_queue<int, vector<int>> pq;
+    // Menor primeiro
+    priority_queue<int, vector<int>, greater<int>> pq;
+
+    // Customizada
+    auto cmp = [](const int& a, const int& b) {
+        return a.custo > b.custo; // > = Menor no topo ; < = Maior no topo
+    };
+
+    priority_queue<int, vector<int>, decltype(cmp)> pq(cmp);
+    
+```
