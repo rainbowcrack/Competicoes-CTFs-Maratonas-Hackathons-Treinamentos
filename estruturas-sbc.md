@@ -753,6 +753,39 @@ void backtrack(int n){
     }
 }
 ```
+# Multiset
+```cpp
+// Multiset – STL
+#include <set>
+multiset<int> ms;
+
+// Inserir elementos
+ms.insert(5);
+ms.insert(3);
+ms.insert(5); // permite duplicatas
+
+// Remover um elemento (apenas uma ocorrência)
+ms.erase(ms.find(5)); 
+
+// Contar ocorrências de um valor
+int count5 = ms.count(5);
+
+// Iterar
+for(auto x : ms) { 
+    cout << x << " "; 
+}
+
+// Acessar menor/maior elemento
+int menor = *ms.begin();
+int maior = *ms.rbegin();
+
+// Encontrar um elemento
+auto it = ms.find(3); // retorna iterator ou ms.end() se não existir
+
+// Lower bound / Upper bound
+auto it_lower = ms.lower_bound(3); // >= 3
+auto it_upper = ms.upper_bound(3); // > 3
+```
 ## Matematica <cmath>
 ```cpp
 // Constantes
