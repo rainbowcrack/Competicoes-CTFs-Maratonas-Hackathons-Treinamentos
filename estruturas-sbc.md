@@ -562,3 +562,265 @@ Lógica: **int xor_total = grundy[pilha1] ^ grundy[pilha2] ^ grundy[pilha3];**
     priority_queue<int, vector<int>, decltype(cmp)> pq(cmp);
     
 ```
+## GCD e LCM (MDC e MMC) em C++:
+```cpp
+int gcd(int a, int b) {
+    return b == 0 ? a : gcd(b, a % b);
+}
+int lcm(int a, int b) {
+    return (a / gcd(a, b)) * b;
+}
+```
+
+## Encontrar os N primeiros primos em O(N log log N):
+```cpp
+vector<bool> prime(N+1, true);
+prime[0] = prime[1] = false;
+for (int i=2; i*i<=N; i++)
+    if (prime[i])
+        for (int j=i*i; j<=N; j+=i)
+            prime[j] = false;
+```
+# Estruturas de dados em C++:
+## Union-Find
+```cpp
+int parent[N], sz[N]; // parent[i] comeca com i
+
+int find(int x) {
+    return parent[x] == x ? x : parent[x] = find(parent[x]);
+}
+void unite(int a, int b) {
+    a = find(a); b = find(b);
+    if (a == b) return;
+    if (sz[a] < sz[b]) swap(a, b);
+    parent[b] = a;
+    sz[a] += sz[b];
+}
+```
+## Binary Indexed Tree (BIT) 1-indexada
+```cpp
+int bit[N+1];
+
+void add(int i, int v) {
+    for (; i <= N; i += i & -i) bit[i] += v;
+}
+
+int sum(int i) {
+    int s = 0;
+    for (; i > 0; i -= i & -i) s += bit[i];
+    return s;
+}
+```
+## Segment Tree (Soma de intervalos)
+```cpp
+int st[4*N], a[N];
+// para minimo em intervalos, trocar onde tem + por min
+// para minimo em intervalos, trocar onde tem + por max
+void build(int p,int l,int r){
+    if(l==r) st[p]=a[l];
+    else{
+        int m=(l+r)/2;
+        build(2*p,l,m);
+        build(2*p+1,m+1,r);
+        st[p]=st[2*p]+st[2*p+1];
+    }
+}
+int query(int p,int l,int r,int i,int j){
+    if(j<l||r<i) return 0;
+    if(i<=l&&r<=j) return st[p];
+    int m=(l+r)/2;
+    return query(2*p,l,m,i,j)+query(2*p+1,m+1,r,i,j);
+}
+void update(int p,int l,int r,int idx,int val){
+    if(l==r) st[p]=val;
+    else{
+        int m=(l+r)/2;
+        if(idx<=m) update(2*p,l,m,idx,val);
+        else update(2*p+1,m+1,r,idx,val);
+        st[p]=st[2*p]+st[2*p+1];
+    }
+}
+```
+## Grafos:
+## DFS
+```cpp
+void dfs(int u) {
+    vis[u] = 1;
+    for (int v : adj[u])
+        if (!vis[v]) dfs(v);
+}
+```
+## BFS
+```cpp
+void bfs(int s) {
+    queue<int> q; q.push(s);
+    dist[s] = 0;
+    while (!q.empty()) {
+        int u = q.front(); q.pop();
+        for (int v : adj[u])
+            if (dist[v] == -1) {
+                dist[v] = dist[u] + 1;
+                q.push(v);
+            }
+    }
+}
+```
+## Dijkstra
+```cpp
+void dijkstra(int s) {
+    priority_queue<pair<int,int>, vector<pair<int,int>>, greater<>> pq;
+    dist[s] = 0; pq.push({0,s});
+    while (!pq.empty()) {
+        auto [d,u] = pq.top(); pq.pop();
+        if (d > dist[u]) continue;
+        for (auto [v,w] : adj[u]) {
+            if (dist[v] > d + w) {
+                dist[v] = d+w;
+                pq.push({dist[v],v});
+            }
+        }
+    }
+}
+```
+## Tempo de entrada e saída (Árvores)
+```cpp
+int tin[N], tout[N], timer=0;
+void dfs(int u,int p){
+    tin[u]=++timer;
+    for(int v:adj[u]) if(v!=p) dfs(v,u);
+    tout[u]=++timer;
+}
+bool is_ancestor(int u,int v){ 
+    return tin[u]<=tin[v] && tout[u]>=tout[v]; 
+}
+```
+## Conjuntos (Bitmask)
+```cpp
+int mask = 0;           // conjunto vazio
+mask |= (1<<i);         // adiciona elemento i
+mask &= ~(1<<i);        // remove elemento i
+if(mask & (1<<i)) ...   // checa se i pertence
+int size = __builtin_popcount(mask); // tamanho do conjunto
+int lsb = mask & -mask; // bit menos significativo (último inserido)
+int idx = __builtin_ctz(mask); // posição do bit menos significativo
+
+// subconjuntos de n elementos
+for(int mask=0; mask<(1<<n); mask++) {
+    // processar subconjunto mask
+}
+
+// subconjuntos do cojunto mask
+for(int sub=mask; sub; sub=(sub-1)&mask){
+    // sub é subconjunto de mask
+}
+
+#include <bitset>
+bitset<1000> b;   // conjunto com até 1000 elementos
+b.set(i);         // adiciona i
+b.reset(i);       // remove i
+b.flip(i);        // inverte i
+b[i];             // acessa i (0 ou 1)
+b.count();        // quantidade de elementos
+b.any();          // existe algum elemento?
+b.none();         // conjunto vazio?
+
+bitset<1000> a, c;
+c = a & b;   // interseção
+c = a | b;   // união
+c = a ^ b;   // diferença simétrica
+
+```
+## Backtracking
+```cpp
+vector<int> cur;
+vector<int> usado(n+1,0);
+// permutacao de 1 ate n
+void backtrack(int n){
+    if((int)cur.size()==n){
+        // solução encontrada
+        for(int x:cur) cout<<x<<" ";
+        cout<<"\n";
+        return;
+    }
+    for(int i=1;i<=n;i++){
+        if(!usado[i]){
+            usado[i]=1;
+            cur.push_back(i);
+            backtrack(n);
+            cur.pop_back();
+            usado[i]=0;
+        }
+    }
+}
+```
+## Matematica <cmath>
+```cpp
+// Constantes
+M_PI      // π (3.14159...)
+M_E       // e (2.71828...)
+const double EPS = 1e-9; // precisão para comparações de double
+
+// Potência, raiz e logaritmos
+pow(x, y);   // x^y
+sqrt(x);     // raiz quadrada
+cbrt(x);     // raiz cúbica
+hypot(x,y);  // sqrt(x^2 + y^2)
+log(x);      // log_e(x)
+log10(x);    // log_10(x)
+log2(x);     // log_2(x)
+exp(x);      // e^x
+
+// Trigonometria
+sin(x); cos(x); tan(x);        // radianos
+asin(x); acos(x); atan(x);      // arco-seno/cosseno/tangente
+atan2(y,x);                     // trata quadrante correto
+
+// Conversão graus ↔ radianos
+double toRad(double deg) { return deg * M_PI / 180.0; }
+double toDeg(double rad) { return rad * 180.0 / M_PI; }
+
+// Arredondamento
+floor(x); ceil(x); round(x); trunc(x);
+
+// Valor absoluto e sinal
+abs(x);      // inteiro
+fabs(x);     // double
+copysign(x,y); // valor |x| com sinal de y
+
+// Mínimo e Máximo
+min(a,b); max(a,b);
+fmin(a,b); fmax(a,b); // versão double
+
+// Resto
+fmod(a,b);       // resto de divisão decimal
+remainder(a,b);  // resto arredondado
+
+// Comparação de doubles
+bool igual(double a, double b) { return fabs(a - b) < EPS; }
+bool menor(double a, double b) { return a < b - EPS; }
+bool maior(double a, double b) { return a > b + EPS; }
+
+// Distância entre dois pontos
+struct Point { double x, y; };
+double dist(Point a, Point b) { return hypot(a.x - b.x, a.y - b.y); }
+
+// Produto escalar e ângulo entre vetores
+double dot(Point a, Point b) { return a.x*b.x + a.y*b.y; }
+double angle(Point a, Point b) { return acos(dot(a,b)/(hypot(a.x,a.y)*hypot(b.x,b.y))); } // rad
+
+// Produto vetorial (2D)
+double cross(Point a, Point b) { return a.x*b.y - a.y*b.x; }
+// sinais: >0 -> b à esquerda, <0 -> b à direita, =0 -> colinear
+
+// Colinearidade de 3 pontos
+bool colinear(Point a, Point b, Point c) {
+    return fabs(cross(b-a, c-a)) < EPS;
+}
+
+// Normalizar ângulo [0,2π)
+double normAngle(double ang) {
+    ang = fmod(ang, 2*M_PI);
+    if(ang < 0) ang += 2*M_PI;
+    return ang;
+}
+```
