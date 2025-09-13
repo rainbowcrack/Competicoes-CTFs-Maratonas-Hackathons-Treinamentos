@@ -857,3 +857,16 @@ double normAngle(double ang) {
     return ang;
 }
 ```
+
+| Complexidade | Máximo `n` aproximado | Observações |
+|--------------|----------------------|-------------|
+| O(1)         | qualquer             | Operação simples, constante |
+| O(log n)     | 10^18                | Logaritmo cresce muito devagar |
+| O(n)         | 10^8                 | Linear, 1 segundo ≈ 10^8 operações |
+| O(n log n)   | 2×10^6               | Ex.: sorting 2 milhões de elementos |
+| O(n^2)       | 10^4                 | Quadrático, cuidado com loops aninhados |
+| O(n^3)       | 400                  | Cúbico, só para n pequeno |
+| O(n^4)       | 50                   | Muito pesado, raramente usado |
+| O(2^n)       | 20                   | Ex.: backtracking / subsets |
+| O(3^n)       | 15                   | Problemas de recursão com 3 escolhas |
+| O(n!)        | 10                   | Fatorial, só para casos muito pequenos |
