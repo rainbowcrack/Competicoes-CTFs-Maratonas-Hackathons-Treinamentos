@@ -37,7 +37,7 @@ int main(){
 		}
 		else{
 			ans = (mul * num + sum) % MOD;
-			cout << ans << '\n';
+			cout << ans << '\n'; // porcaria do \n ao inves do endl
 		
 		}
 	}
