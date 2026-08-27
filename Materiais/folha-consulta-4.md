@@ -506,3 +506,39 @@ while (!q.empty()) {
 
 // se topo.size() < n, existe ciclo
 ```
+## Complexidades
+| Algoritmo | Complexidade |
+|---|---:|
+| BFS / DFS | `O(N + M)` |
+| 0-1 BFS | `O(N + M)` |
+| Dijkstra | `O((N + M) log N)` |
+| Bellman-Ford | `O(NM)` |
+| Floyd-Warshall | `O(N³)` |
+| Topological Sort | `O(N + M)` |
+| Kosaraju | `O(N + M)` |
+| Kruskal | `O(M log M)` |
+| DSU | `O(α(N))` amortizado |
+| Dinic | `O(N²M)` |
+| LCA | `O(log N)` por consulta |
+| Segment Tree | `O(log N)` query/update |
+| Fenwick | `O(log N)` query/update |
+| KMP | `O(N)` |
+| GCD | `O(log N)` |
+| Fast Power | `O(log B)` |
+| Crivo | `O(N log log N)` |
+| Sort | `O(N log N)` |
+| Binary Search | `O(log N)` |
+
+## Fórmulas Matemáticas
+### Distância Euclidiana, entre (x1, y1) e (x2, y2):
+```cpp
+double dist(double x1, double y1, double x2, double y2) {
+    return hypot(x1 - x2, y1 - y2);
+}
+```
+### Distância Manhattan
+```cpp
+ll manhattan(ll x1, ll y1, ll x2, ll y2) {
+    return abs(x1-x2) + abs(y1-y2);
+}
+```
